@@ -1,8 +1,28 @@
 <?php
+
+// Get Method
     if(isset($_GET['name'])){
-        print_r($_GET);
-        echo $_GET['email'];
+        // print_r($_GET);
+       $name = htmlentities($_GET['name']);
+    //    $email = htmlentities($_GET['email']);
+    //    echo $name;
     }
+/*
+// Post Method
+    if(isset($_POST['name'])){
+        print_r($_GET);
+       $name = htmlentities($_POST['email']);   //preventing cross site scripting
+       echo $name;
+    }
+
+    // Request method - it works wit hthe GET action of form attribute
+    if(isset($_REQUEST['name'])){
+        print_r($_GET);
+       $name = htmlentities($_POST['email']);   //preventing cross site scripting
+       echo $name;
+    }
+    */
+    echo $_SERVER['QUERY_STRING'];  //works with GET method
 ?>
 
 <!DOCTYPE html>
@@ -16,14 +36,19 @@
 <body>
     <form action="" method="GET" action="get_post.php">
     <div>
-    <label for="Name:"></label>
+    <label for="Name">Name:</label><br>
     <input type="text" name="name">
     </div>
     <div>
-    <label for="Email:"></label>
+    <label for="Email">Email:</label><br>
     <input type="text" name="email">
     </div>
     <input type="submit" value="Submit">
     </form>
+    <ul>
+    <li><a href="get_post.php?name=Brad">Brad</a></li>
+    <li><a href="get_post.php?name=Aminat">Aminat</a></li>
+    </ul>
+    <h1><?php echo "{$name}'s Profile"; ?></h1>
 </body>
 </html>
